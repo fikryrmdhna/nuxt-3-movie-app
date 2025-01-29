@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
-import { useMovieStore } from '@/stores/movie';
+import { useMovieStore } from '../../stores/movie';
 
 const movieStore = useMovieStore();
 const isAdded = ref(false)
@@ -78,7 +78,6 @@ const getGenre = (genres: any[]) => {
 const addToFavorite = (movieId: number | string) => {
     movieStore.postFavorite(movieId)
         .then((res) => {
-            console.log('res', res)
             isAdded.value = true
             movieStore.getFavorite()
         })

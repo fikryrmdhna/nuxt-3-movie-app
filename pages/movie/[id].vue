@@ -91,7 +91,7 @@ const similarMovies = ref<Movie[]>([]);
 
 const config = useRuntimeConfig();
 
-const { data: detail, status, error, refresh } = await useAsyncData('detail', async () => {
+const { data: detail, refresh } = await useAsyncData('detail', async () => {
     const [movie, reviews] = await Promise.all([
         $fetch<MovieDetail>(`${config.public.apiBase}/movie/${route.params.id}`, {
         query: {

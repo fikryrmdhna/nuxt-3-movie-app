@@ -77,7 +77,6 @@ export const useMovieStore = defineStore('movie', {
             }
           })
             .then(response => {
-              console.log('response', response)
               this.autocompletes = response.results.slice(0, 5)
               resolve(response);
             })

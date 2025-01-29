@@ -50,8 +50,8 @@ function debounce(fn: Function, delay: number) {
 }
 
 const searchMovie = debounce((e: any) => {
-    console.log('search', e.target.value)
     keyword.value = e.target.value
+
     movieStore.getMovieByQuery({ query: e.target.value })
     .then(() => {
         if (autocompletes.value.length > 0) {

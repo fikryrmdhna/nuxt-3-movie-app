@@ -13,9 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import Searchbar from '@/components/Header/Searchbar.vue'
-import Menu from '@/components/Header/Menu.vue'
 import { useRoute } from 'vue-router'
+
+import Searchbar from '../components/Header/Searchbar.vue'
+import Menu from '../components/Header/Menu.vue'
 
 const route = useRoute()
 const page = route.path.split('/')[1]

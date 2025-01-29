@@ -2,7 +2,6 @@
     <div class="navbar-menu">
         <ul class="d-flex">
             <li v-for="(menu, i) in menus" :key="i">
-
                 <v-menu
                     v-if="menu.child"
                     open-on-hover

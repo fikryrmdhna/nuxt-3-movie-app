@@ -38,7 +38,7 @@
 </template>
   
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, ref, watch } from 'vue';
+import { defineProps, defineEmits, ref, watch } from 'vue';
 
 
 const props = defineProps<{

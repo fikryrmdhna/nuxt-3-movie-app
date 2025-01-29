@@ -117,13 +117,13 @@
 import { ref, onMounted } from 'vue';
 import { useDisplay } from "vuetify";
 
-import { useMovieStore } from '@/stores/movie';
-import type { Movie, MovieList } from '@/types/movie';
+import { useMovieStore } from '../stores/movie';
+import type { Movie, MovieList } from '../types/movie';
 
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
-import MovieCard from '~/components/Base/MovieCard.vue';
-import FilterPanelCard from '~/components/Base/FilterPanelCard.vue';
+import MovieCard from '../components/Base/MovieCard.vue';
+import FilterPanelCard from '../components/Base/FilterPanelCard.vue';
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -184,7 +184,6 @@ const getMovies = () => {
     isLoadingMovies.value = true
     movieStore.getMovies({ page: page.value, with_genres: selectedGenre.value.join(','), sort_by: selectedSorting.value })
         .then((res: MovieList) => {
-            console.log('movies', res.results);
             movies.value = res.results.map((item) => {
                 return {
                     ...item,
