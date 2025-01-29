@@ -1,5 +1,7 @@
 export interface MovieList {
     results: Movie[];
+    total_pages: number;
+    total_results: number;
 }
 export interface Movie {
     adult: boolean;
@@ -109,4 +111,9 @@ export interface ApiError {
     message: string;
     status?: number;
     [key: string]: any;
+}
+
+export interface FetchResponse {
+    request_token: string;
+    session_id: string
 }

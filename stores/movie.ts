@@ -6,7 +6,9 @@ import type { MovieList, Movie, ApiError, Genre } from '../types/movie'
 export const useMovieStore = defineStore('movie', {
   state: () => ({
     genres: [] as Genre[],
-    autocompletes: [] as Movie[]
+    autocompletes: [] as Movie[],
+    favoriteMovies: [] as Movie[],
+    totalFavoriteMovies: 0,
   }),
   actions: {
     getApiBase() {
@@ -17,6 +19,16 @@ export const useMovieStore = defineStore('movie', {
     getApiKey() {
         const config = useRuntimeConfig();
         return config.public.apiKey;
+    },
+
+    getAccountId() {
+        const config = useRuntimeConfig();
+        return config.public.accountId;
+    },
+
+    getSessionId() {
+        const config = useRuntimeConfig();
+        return config.public.sessionId;
     },
 
     getGenres() {
@@ -124,6 +136,62 @@ export const useMovieStore = defineStore('movie', {
           query: {
             api_key: apiKey
           }
+        })
+          .then(response => {
+            resolve(response);
+          })
+          .catch((error: ApiError) => {
+            console.error('Error fetching movies:', error);
+            reject(error);
+          });
+      });
+    },
+    getFavorite(): Promise<MovieList> {
+      const apiBase = this.getApiBase();
+      const apiKey = this.getApiKey();
+      const accountId = this.getAccountId();
+      const sessionId = this.getSessionId();
+
+      return new Promise((resolve, reject) => {
+        $fetch<MovieList>(`${apiBase}/account/${accountId}/favorite/movies`, {
+          query: {
+            api_key: apiKey,
+            language: 'en-US',
+            sort_by: 'created_at.asc',
+            session_id: sessionId
+          }
+        })
+          .then(response => {
+            this.totalFavoriteMovies = response.total_results
+            resolve(response);
+          })
+          .catch((error: ApiError) => {
+            console.error('Error fetching movies:', error);
+            reject(error);
+          });
+      });
+    },
+    postFavorite(id: string | number) {
+      const apiBase = this.getApiBase();
+      const apiKey = this.getApiKey();
+      const accountId = this.getAccountId();
+      const sessionId = this.getSessionId();
+
+      return new Promise((resolve, reject) => {
+        $fetch(`${apiBase}/account/${accountId}/favorite`, {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          query: {
+            api_key: apiKey,
+            session_id: sessionId
+          },
+          body: JSON.stringify({
+            media_type: "movie",
+            media_id: id,
+            favorite: true
+          }),
         })
           .then(response => {
             resolve(response);

@@ -4,10 +4,11 @@
             <div class="image relative">
                 <NuxtImg
                     :src="movie.poster_path ? `http://image.tmdb.org/t/p/w500/${movie.poster_path}` : 'https://placehold.co/215x320'"
-                    :alt="movie.title" class="image-poster"
+                    :alt="movie.title" 
+                    class="w-full image-poster"
                     format="webp"
                     loading="lazy"
-                    fit="cover" 
+                    fit="cover"
                 />
                 <span class="absolute top-0 right-0 bg-gray-800 text-white p-2 font-medium">{{ movie.formatted_vote_average }}</span>
 
@@ -29,14 +30,14 @@
                         View
                     </v-btn>
                     <v-btn
-                        v-if="!isMoviePage"
                         density="default" 
                         elevation="0" 
                         class="mt-2 text-white"
-                        color="#E74C3C"
+                        :color="!isAdded ? '#E74C3C' : '#A9FFC6'"
                         size="small"
                         rounded
-                        variant="outlined"
+                        :variant="!isAdded ? 'outlined' : 'flat'"
+                        @click="addToFavorite(movie.id)"
                     >
                         Add
                     </v-btn>
@@ -50,11 +51,10 @@
 
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
-import { useRoute } from 'vue-router';
 import { useMovieStore } from '@/stores/movie';
 
-const route = useRoute();
 const movieStore = useMovieStore();
+const isAdded = ref(false)
 
 defineProps({
     movies: {
@@ -69,11 +69,23 @@ defineProps({
 
 const genre = computed(() => movieStore.genres)
 
-const isMoviePage = computed(() => route.path.split('/')[1] === 'movie');
-
 const getGenre = (genres: any[]) => {
     const findGenre = genre.value.find((genre) => genre.id === genres[0]) || null;
     
     return findGenre?.name || ''
+}
+
+const addToFavorite = (movieId: number | string) => {
+    movieStore.postFavorite(movieId)
+        .then((res) => {
+            console.log('res', res)
+            isAdded.value = true
+            movieStore.getFavorite()
+        })
+        .finally(() => {
+            setTimeout(() => {
+                isAdded.value = false
+            }, 5000)
+        })
 }
 </script>

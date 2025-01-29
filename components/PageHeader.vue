@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar :color="page === 'detail' ? 'transparent' : '#1E232B'" scroll-behavior="elevate" class="px-12" style="z-index: 40 !important;">
+    <v-app-bar :color="page === 'detail' ? 'transparent' : '#1E232B'" scroll-behavior="elevate" class="px-12" style="z-index: 999 !important;">
         <div class="d-flex justify-space-between align-center w-100">
             <div class="logo">
                 <a href="/">

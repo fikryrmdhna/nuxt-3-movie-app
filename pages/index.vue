@@ -4,14 +4,14 @@
             <v-container-fluid class="slider-top">
                 <div class="row">
                     <div class="col-12">
-                        <Carousel :items-to-show="2.5" :wrap-around="true" :autoplay="5000" :transition="500">
+                        <Carousel :items-to-show="itemToShow" :wrap-around="true" :autoplay="5000" :transition="500">
                             <Slide v-for="trending in trendings" :key="trending.id">
                                 <v-card class="carousel__item p-24" elevation="0" style="background-color: transparent;">
-                                    <div class="d-flex relative align-center">
+                                    <div class="relative flex align-center flex-column flex-sm-row">
                                         <div class="w-70 relative">
                                             <NuxtImg fit="cover" :src="`http://image.tmdb.org/t/p/w500/${trending.poster_path}`" width="700" height="100" />
                                         </div>
-                                        <div class="detail-movie relative text-center px-8">
+                                        <div class="detail-movie relative text-center mt-4 mt-sm-0 px-4 px-sm-8">
                                             <div class="rating d-flex align-center">
                                                 <v-icon class="w-5 me-1" color="yellow">mdi-star</v-icon>
                                                 <p class="text-white font-bold text-xl ml-1">{{ trending.vote_average.toFixed(1) }}</p>
@@ -37,55 +37,53 @@
         </section>
         <section class="relative bg-[#1E232B] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-72 before:bg-white/5">
             <v-container class="py-16 relative seach-main">
-                <h1 class="title-page text-white text-3xl">
-                    Discover Movies
-                </h1>
+                <div class="flex flex-col flex-sm-row align-start align-sm-center justify-sm-space-between">
+                    <h2 class="title-page text-white text-3xl">
+                        Discover Movies
+                    </h2>
+                    <div class="flex mt-4 mt-sm-0 align-center">
+                        <div class="text-sm text-white">My Movie</div>
+                        <div class="bg-black/20 text-sm rounded-xl text-white px-4 py-2 ml-2 cursor-pointer">
+                            <span class="font-bold">{{ totalFavorite }}</span>
+                            movies
+                        </div>
+                    </div>
+                </div>
                 <v-row class="mt-6">
-                    <v-col cols="3">
-                        <v-card
-                            class="filter-sidepanel"
-                            elevation="0"
-                            color="rgba(0, 0, 0, 0.7)"
+                    <v-col cols="12" md="3">
+                        <v-btn v-if="isMobile" class="text-right" @click="drawer = true">
+                            <v-icon>mdi-filter-outline</v-icon> <span class="normal-case">Filter</span>
+                        </v-btn>
+
+                        <!-- Drawer for Mobile -->
+                        <v-navigation-drawer
+                            v-model="drawer"
+                            temporary
+                            location="bottom"
+                            :width="drawerWidth"
+                            class="!w-[50vw] max-w-[400px] min-w-[250px] !top-16"
                         >
-                            <p class="py-8 px-6 text-md font-medium text-white">Sort Result By</p>
-        
-                            <div class="sorting-wrapper py-6 px-4">
-                                <v-select
-                                    v-model="selectedSorting"
-                                    :items="sorting"
-                                    item-title="text"
-                                    item-value="value"
-                                    label="Select Sorting"
-                                    variant="outlined"
-                                    class="py-2 px-6"
-                                    bg-color="rgba(224, 224, 224, 0.13)"
-                                    base-color="rgba(224, 224, 224, 0.13)"
-                                    color="rgba(224, 224, 224, 0.13)"
-                                    item-color="rgba(224, 224, 224, 0.13)"
-                                    hide-details
-                                    single-line
-                                ></v-select>
-                            </div>
-        
-                            <p class="py-8 px-6 text-md font-medium text-white" style="border-bottom: 1px solid rgba(255, 255, 255, 0.07);">Genre</p>
-        
-                            <div class="genre-wrapper px-4 py-5">
-                                <v-checkbox
-                                    v-model="selectedGenre"
-                                    v-for="g in genre"
-                                    color="rgba(231, 76, 60, 1)"
-                                    base-color="#fff"
-                                    :key="g.id"
-                                    :label="g.name"
-                                    :value="g.id"
-                                    hide-details
-                                ></v-checkbox>
-                            </div>
-                        </v-card>
+                            <FilterPanelCard
+                                v-model:sorting="selectedSorting"
+                                v-model:genre="selectedGenre"
+                                :sortingValue="sorting"
+                                :genreValue="genre"
+                            />
+                        </v-navigation-drawer>
+
+                        <!-- FilterPanelCard Larger Screens -->
+                        <div v-if="!isMobile">
+                            <FilterPanelCard
+                                v-model:sorting="selectedSorting"
+                                v-model:genre="selectedGenre"
+                                :sortingValue="sorting"
+                                :genreValue="genre"
+                            />
+                        </div>
                     </v-col>
-                    <v-col cols="9">
-                        <MovieCard v-if="!isLoadingMovies" :movies="movies" :className="'grid grid-cols-4 gap-6 mb-3'" />
-                        <div v-else class="grid grid-cols-4 gap-6 mb-3">
+                    <v-col cols="12" md="9">
+                        <MovieCard v-if="!isLoadingMovies" :movies="movies" :className="'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-3'" />
+                        <div v-else class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-3">
                             <v-skeleton-loader v-for="i in 20" :key="i" type="image"></v-skeleton-loader>
                         </div>
                         <div class="text-center">
@@ -117,6 +115,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useDisplay } from "vuetify";
 
 import { useMovieStore } from '@/stores/movie';
 import type { Movie, MovieList } from '@/types/movie';
@@ -124,6 +123,7 @@ import type { Movie, MovieList } from '@/types/movie';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
 import MovieCard from '~/components/Base/MovieCard.vue';
+import FilterPanelCard from '~/components/Base/FilterPanelCard.vue';
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -132,14 +132,16 @@ definePageMeta({
 })
 
 const movieStore = useMovieStore();
+const { mdAndDown } = useDisplay();
 
 const trendings = ref<Movie[]>([]);
 const movies = ref<Movie[]>([]);
 const isLoading = ref<boolean>(true);
 const isLoadingMovies = ref<boolean>(true);
 const page = ref(1)
-const selectedSorting = ref(null)
+const selectedSorting = ref<string | null>(null);
 const selectedGenre = ref<number[]>([]);
+const drawer = ref(false);
 
 const sorting = [
     { text: 'Popularity Ascending', value: 'popularity.asc' },
@@ -151,6 +153,10 @@ const sorting = [
 ]
 
 const genre = computed(() => movieStore.genres)
+const totalFavorite = computed(() => movieStore.totalFavoriteMovies)
+const isMobile = computed(() => mdAndDown.value);
+const drawerWidth = computed(() => window.innerWidth * 0.5);
+const itemToShow = computed(() => (mdAndDown.value ? 1 : 2.5));
 
 onMounted(() => {
     getTrendingData()

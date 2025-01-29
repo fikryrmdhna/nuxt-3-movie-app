@@ -8,7 +8,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.API_BASE,
-      apiKey: process.env.API_KEY
+      apiKey: process.env.API_KEY,
+      accountId: process.env.ACCOUNT_ID,
+      sessionId: process.env.SESSION_ID
     },
   },
   postcss: {
