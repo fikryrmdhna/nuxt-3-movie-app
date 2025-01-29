@@ -40,6 +40,8 @@ Ensure you have the following installed on your machine:
    ```bash
    API_KEY=458a7d2053e318da6bd965f71a53450f
    API_BASE_URL=https://api.themoviedb.org/3
+   ACCOUNT_ID=21579650
+   SESSION_ID=da7d0c609909541f4455d415c177d395db0d3efe
 
 5. **Run the development server**
 
