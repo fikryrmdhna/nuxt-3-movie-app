@@ -8,7 +8,7 @@
                     open-on-hover
                 >
                     <template v-slot:activator="{ props }">
-                        <a v-bind="props" href="#" class="font-medium text-white">
+                        <a v-bind="props" href="#" class="font-medium text-white text-sm">
                             <v-icon :icon="menu.icon"></v-icon>
                             {{ menu.text }}
                         </a>
@@ -20,14 +20,14 @@
                             :key="item.id"
                         >
                          <v-list-item-title>
-                             <NuxtLink :to="`/search?genreId=${item.id}`">
+                             <NuxtLink :to="`/search?genreId=${item.id}`" class="text-sm">
                                 {{ item.text }}
                             </NuxtLink>
                         </v-list-item-title>
                         </v-list-item>
                     </v-list>
                 </v-menu>
-                <a v-else href="#" class="font-medium text-white">{{ menu.text }}</a>
+                <a v-else href="#" class="font-medium text-white text-sm">{{ menu.text }}</a>
             </li>
         </ul>
     </div>

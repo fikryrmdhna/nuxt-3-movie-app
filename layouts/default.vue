@@ -9,10 +9,15 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageFooter from '../components/PageFooter.vue';
-import { useRoute } from 'vue-router'
+import { useMovieStore } from '../stores/movie';
 
-const route = useRoute()
-const page = route.path.split('/')[1]
+const movieStore = useMovieStore();
+
+onMounted(() => {
+    movieStore.getGenres();
+})
+
 </script>

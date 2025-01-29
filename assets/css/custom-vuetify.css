@@ -1,0 +1,110 @@
+.v-application {
+    font-family: "Montserrat", sans-serif;
+}
+
+@media (min-width: 1280px) {
+    .v-container {
+        max-width: 1200px !important;
+    }
+}
+
+.v-icon--clickable {
+    color: #fff !important;
+}
+
+.v-toolbar__content {
+    position: unset !important;
+    overflow: visible !important;
+}
+
+.v-field__prepend-inner {
+    width: 20px;
+}
+
+.v-text-field input {
+    color: #e5e7eb !important;
+    font-size: 14px;
+}
+
+main {
+    padding-top: 64px;
+    /* background-color: #1E232B; */
+}
+
+.title-page {
+    position: relative;
+}
+
+.title-page::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -15px;
+    background-color: #E74C3C;
+    width: 80px;
+    height: 5px;
+}
+
+.slider-top .carousel__item .d-flex.relative::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 100%;
+    height: 95%;
+    background-color: #000;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+.carousel__pagination-button {
+    height: 10px !important;
+    width: 10px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 50% !important;
+}
+
+.carousel__pagination-button--active {
+    width: 60px !important;
+    height: 10px !important;
+    background-color: #E74C3C !important;
+    border-radius: 6px !important;
+}
+
+
+.filter-sidepanel {
+    background: linear-gradient(190deg, rgba(14,23,35,1) 0%, rgba(30,35,42,1) 100%);
+}
+
+.v-checkbox .v-selection-control {
+    min-height: 40px;
+}
+
+.v-selection-control .v-label, .v-select .v-label {
+    color: #fff;
+    opacity: 1;
+}
+
+.sorting-wrapper {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.card-movie .image-poster{
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.navbar-search label.v-label.v-field-label {
+    color: #fff !important;
+}
+
+.navbar-search .v-field__append-inner {
+    color: #fff !important;
+}
+
+.genre-wrapper .v-selection-control.v-checkbox-btn {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
