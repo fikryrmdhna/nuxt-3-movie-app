@@ -105,7 +105,11 @@ const { data: detail, status, error, refresh } = await useAsyncData('detail', as
         }),
     ]);
 
-    const slicedReviews = reviews.results.slice(0, 2);
+    const formattedReviews = reviews.results.map((item) => ({
+        ...item,
+        formatted_created_at: new Date(item.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: '2-digit' }) || ''
+    }))
+    const slicedReviews = formattedReviews.slice(0, 2);
 
     return {
         movie: {

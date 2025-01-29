@@ -5,11 +5,11 @@
                 <v-avatar color="#1E232B36" size="48" class="me-4"></v-avatar>
                 <div>
                     <v-card-title class="pa-0">{{ review.author }}</v-card-title>
-                    <v-card-subtitle class="pa-0">{{ review.created_at }}</v-card-subtitle>
+                    <v-card-subtitle class="pa-0">{{ review.formatted_created_at }}</v-card-subtitle>
                 </div>
             </div>
             <div v-if="review.author_details.rating" class="flex align-start px-3 py-2 bg-[#C4C4C447] rounded-md">
-                <!-- <img src="@/assets/images/Star.png" alt="" class="w-5"> -->
+                <v-icon class="w-1" color="yellow">mdi-star</v-icon>
                 <p class="font-bold text-4xl">{{ review.author_details.rating }}</p>
             </div>
         </div>
