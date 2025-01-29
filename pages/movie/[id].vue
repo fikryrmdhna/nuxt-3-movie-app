@@ -21,7 +21,7 @@
         <section class="-mt-60">
             <v-container>
                 <v-row v-if="detail?.movie" class="movie-detail relative z-10">
-                    <v-col cols="3">
+                    <v-col cols="12" md="3">
                         <NuxtImg
                             :src="detail.movie.poster_path ? `http://image.tmdb.org/t/p/w500/${detail.movie.poster_path}` : 'https://placehold.co/250x375'"
                             :alt="detail.movie.title" 
@@ -31,7 +31,7 @@
                             fit="cover" 
                         />
                     </v-col>
-                    <v-col cols="9" class="py-10">
+                    <v-col cols="12" md="9" class="py-10">
                         <MovieDetailCard :detail="detail" />
                     </v-col>
                 </v-row>
@@ -46,7 +46,7 @@
                         </div>
                     </v-col>
                     <template v-if="detail.reviews.length > 0">
-                        <v-col v-for="review in detail?.reviews" :key="review.id" cols="6" class="relative z-10">
+                        <v-col v-for="review in detail?.reviews" :key="review.id" cols="12" sm="6" class="relative z-10">
                             <ReviewCard :review="review" />
                         </v-col>
                     </template>
@@ -63,7 +63,7 @@
                         <h2 class="text-white text-xl mb-6">
                             RECOMMENDATION MOVIES
                         </h2>
-                        <MovieCard v-if="similarMovies" :movies="similarMovies" :className="'grid grid-cols-5 gap-6 mb-3'" />
+                        <MovieCard v-if="similarMovies" :movies="similarMovies" :className="'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-3'" />
                     </v-col>
                 </v-row>
             </v-container>
