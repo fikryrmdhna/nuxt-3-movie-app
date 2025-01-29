@@ -1,75 +1,47 @@
-# Nuxt Minimal Starter
+# Nuxt 3 Movie Application
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a Nuxt 3 application for browsing movie data, built using **Pinia** for state management, **Tailwind CSS** for styling, and **Vuetify** for UI components.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
+- **Nuxt 3** framework
+- **Pinia** for state management
+- **Tailwind CSS** for styling
+- **Vuetify** for UI components
 
-```bash
-# npm
-npm install
+## Prerequisites
 
-# pnpm
-pnpm install
+Ensure you have the following installed on your machine:
 
-# yarn
-yarn install
+- **Node.js** v16.x or higher
+- **NPM** v7.x or higher (or use **Yarn**)
 
-# bun
-bun install
-```
+## Installation
 
-## Development Server
+1. **Clone the repository**
 
-Start the development server on `http://localhost:3000`:
+   ```bash
+   git clone https://github.com/fikryrmdhna/nuxt-3-movie-app.git
 
-```bash
-# npm
-npm run dev
 
-# pnpm
-pnpm dev
+2. **Navigate to the project directory**
 
-# yarn
-yarn dev
+   ```bash
+   cd nuxt-3-movie-app
 
-# bun
-bun run dev
-```
+3. **Install the dependencies**
 
-## Production
+   ```bash
+   npm install
 
-Build the application for production:
+4. **Set up environment variables**
+    Create a .env file in the root directory and add the following variables:
 
-```bash
-# npm
-npm run build
+   ```bash
+   API_KEY=458a7d2053e318da6bd965f71a53450f
+   API_BASE_URL=https://api.themoviedb.org/3
 
-# pnpm
-pnpm build
+5. **Run the development server**
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+   ```bash
+   npm run dev
