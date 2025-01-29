@@ -28,7 +28,7 @@
 
 main {
     padding-top: 64px;
-    /* background-color: #1E232B; */
+    overflow: hidden;
 }
 
 .title-page {

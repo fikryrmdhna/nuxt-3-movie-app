@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/3 navbar-search">
+    <div class="w-full md:w-1/3 navbar-search">
         <v-text-field
             v-model="keyword"
             append-inner-icon="mdi-magnify"

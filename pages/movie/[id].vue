@@ -18,10 +18,10 @@
                 </v-row>
             </v-container-fluid>
         </section>
-        <section class="-mt-60">
+        <section class="-mt-[30rem] sm:-mt-60 bg-[#1E232B] lg:bg-transparent">
             <v-container>
                 <v-row v-if="detail?.movie" class="movie-detail relative z-10">
-                    <v-col cols="12" md="3">
+                    <v-col cols="8" md="2" lg="3">
                         <NuxtImg
                             :src="detail.movie.poster_path ? `http://image.tmdb.org/t/p/w500/${detail.movie.poster_path}` : 'https://placehold.co/250x375'"
                             :alt="detail.movie.title" 
@@ -31,7 +31,7 @@
                             fit="cover" 
                         />
                     </v-col>
-                    <v-col cols="12" md="9" class="py-10">
+                    <v-col cols="12" md="10" lg="9" class="pt-4 pb-10 sm:py-10">
                         <MovieDetailCard :detail="detail" />
                     </v-col>
                 </v-row>
