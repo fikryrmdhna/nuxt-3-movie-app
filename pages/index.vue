@@ -7,7 +7,7 @@
                         <Carousel :items-to-show="itemToShow" :wrap-around="true" :autoplay="5000" :transition="500">
                             <Slide v-for="trending in trendings" :key="trending.id">
                                 <v-card class="carousel__item p-24" elevation="0" style="background-color: transparent;">
-                                    <div class="relative flex align-center flex-column flex-sm-row">
+                                    <div class="relative d-flex align-center flex-column flex-sm-row">
                                         <div class="w-70 relative">
                                             <NuxtImg fit="cover" :src="`http://image.tmdb.org/t/p/w500/${trending.poster_path}`" width="700" height="100" />
                                         </div>
@@ -204,7 +204,12 @@ const handlePageOnClick = () => {
     page.value += 1
     movieStore.getMovies({ page: page.value, with_genres: selectedGenre.value.join(','), sort_by: selectedSorting.value })
         .then((res) => {
-            movies.value = [...movies.value, ...res.results];
+            const formattedMovies = res.results.map((movie: Movie) => ({
+                ...movie,
+                formatted_vote_average: movie.vote_average.toFixed(1),
+                formatted_release_date: new Date(movie.release_date).getFullYear() || '',
+            }))
+            movies.value = [...movies.value, ...formattedMovies];
         })
 }
 </script>

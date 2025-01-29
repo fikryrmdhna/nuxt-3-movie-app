@@ -57,6 +57,12 @@ main {
     transform: translateY(-50%);
 }
 
+@media screen and (max-width: 599px) {
+    .slider-top .carousel__item .d-flex.relative::before{
+        background-color: transparent;
+    }
+}
+
 .carousel__pagination-button {
     height: 10px !important;
     width: 10px !important;
