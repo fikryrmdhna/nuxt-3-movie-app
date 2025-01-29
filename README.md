@@ -35,6 +35,7 @@ Ensure you have the following installed on your machine:
    npm install
 
 4. **Set up environment variables**
+   
     Create a .env file in the root directory and add the following variables:
 
    ```bash
@@ -42,6 +43,11 @@ Ensure you have the following installed on your machine:
    API_BASE_URL=https://api.themoviedb.org/3
    ACCOUNT_ID=21579650
    SESSION_ID=da7d0c609909541f4455d415c177d395db0d3efe
+
+*Because after getting the token request for favorite movie endpoint, we have to manually to approve the session_id from our account. So, I put session_id in **.env**
+
+![Screenshot 2025-01-29 200449](https://github.com/user-attachments/assets/2b04096a-7b8e-43e6-9b7b-c52818e0b382)
+
 
 5. **Run the development server**
 
