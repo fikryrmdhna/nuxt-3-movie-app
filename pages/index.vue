@@ -9,7 +9,7 @@
                                 <v-card class="carousel__item p-24" elevation="0" style="background-color: transparent;">
                                     <div class="relative d-flex align-center flex-column flex-sm-row">
                                         <div class="w-70 relative">
-                                            <NuxtImg fit="cover" :src="`http://image.tmdb.org/t/p/w500${trending.poster_path}`" :alt="'Poster ' + trending.title" width="700" height="100" />
+                                            <NuxtImg fit="cover" :src="`https://image.tmdb.org/t/p/w500${trending.poster_path}`" :alt="'Poster ' + trending.title" width="700" height="100" />
                                         </div>
                                         <div class="detail-movie relative text-center mt-4 mt-sm-0 px-4 px-sm-8">
                                             <div class="rating d-flex align-center">

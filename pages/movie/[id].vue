@@ -6,7 +6,7 @@
                     <v-col cols="12">
                         <div v-if="detail" class="image relative">
                             <NuxtImg
-                                :src="detail.movie.backdrop_path ? `http://image.tmdb.org/t/p/w1280${detail.movie.backdrop_path}` : 'https://placehold.co/1600x600'"
+                                :src="detail.movie.backdrop_path ? `https://image.tmdb.org/t/p/w1280${detail.movie.backdrop_path}` : 'https://placehold.co/1600x600'"
                                 :alt="detail.movie.title" 
                                 class="img-fluid relative"
                                 format="webp"
@@ -24,7 +24,7 @@
                 <v-row v-if="detail?.movie" class="movie-detail relative z-10">
                     <v-col cols="8" md="2" lg="3">
                         <NuxtImg
-                            :src="detail.movie.poster_path ? `http://image.tmdb.org/t/p/w500${detail.movie.poster_path}` : 'https://placehold.co/250x375'"
+                            :src="detail.movie.poster_path ? `https://image.tmdb.org/t/p/w500${detail.movie.poster_path}` : 'https://placehold.co/250x375'"
                             :alt="detail.movie.title" 
                             class="img-fluid"
                             format="webp"
@@ -132,7 +132,7 @@ useHead({
       rel: 'preload',
       as: 'image',
       href: detail?.value?.movie.backdrop_path
-        ? `http://image.tmdb.org/t/p/w1280${detail.value.movie.backdrop_path}`
+        ? `https://image.tmdb.org/t/p/w1280${detail.value.movie.backdrop_path}`
         : 'https://placehold.co/1600x600',
     }
 ],
@@ -140,12 +140,12 @@ useHead({
     { name: 'description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
     { property: 'og:title', content: () => detail?.value?.movie.title },
     { property: 'og:description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
-    { property: 'og:image', content: () => `http://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}` },
+    { property: 'og:image', content: () => `https://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}` },
     { property: 'og:type', content: 'article' },
     { property: 'og:url', content: () => `http://localhost:3000/movie/${route.params.id}` },
     { name: 'twitter:title', content: () => detail?.value?.movie.title },
     { name: 'twitter:description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
-    { name: 'twitter:image', content: () => `http://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}` },
+    { name: 'twitter:image', content: () => `https://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}` },
   ],
   script: [
     {
@@ -155,7 +155,7 @@ useHead({
         "@type": "Movie",
         "name": detail?.value?.movie.title,
         "description": detail?.value?.movie.overview || 'This film has no overview',
-        "image": `http://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}`,
+        "image": `https://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}`,
         "datePublished": detail?.value?.movie.formatted_release_date,
         "aggregateRating": {
           "@type": "AggregateRating",
