@@ -2,6 +2,8 @@
 
 This is a Nuxt 3 application for browsing movie data, built using **Pinia** for state management, **Tailwind CSS** for styling, and **Vuetify** for UI components.
 
+Production Website: https://nuxt-3-movie-3mbqzlk9u-fikry-ramadhanas-projects.vercel.app (Vercel)
+
 ## Features
 
 - **Nuxt 3** framework
