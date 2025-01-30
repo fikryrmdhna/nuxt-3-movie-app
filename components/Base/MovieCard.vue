@@ -3,7 +3,7 @@
         <div v-for="movie in movies" :key="movie.id" class="group/item relative card-movie">
             <div class="image relative">
                 <NuxtImg
-                    :src="movie.poster_path ? `http://image.tmdb.org/t/p/w500/${movie.poster_path}` : 'https://placehold.co/215x320'"
+                    :src="movie.poster_path ? `http://image.tmdb.org/t/p/w500${movie.poster_path}` : 'https://placehold.co/215x320'"
                     :alt="movie.title" 
                     class="w-full image-poster"
                     format="webp"
