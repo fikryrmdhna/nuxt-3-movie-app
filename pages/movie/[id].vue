@@ -137,8 +137,9 @@ useHead({
     }
 ],
   meta: [
-    { name: 'description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
+    { name: 'robots', content: 'index, follow' },
     { property: 'og:title', content: () => detail?.value?.movie.title },
+    { name: 'description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
     { property: 'og:description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
     { property: 'og:image', content: () => `https://image.tmdb.org/t/p/w500${detail?.value?.movie.poster_path}` },
     { property: 'og:type', content: 'article' },

@@ -136,6 +136,7 @@ definePageMeta({
 useHead({
   title: 'Moovie Time - Discover Top Rated Movies',
   meta: [
+    { name: 'robots', content: 'index, follow' },
     { name: 'description', content: 'Explore top-rated movies, trending films, and latest releases. Get details, reviews, and recommendations for the best movies available.' },
     { name: 'keywords', content: 'movies, top rated movies, latest movies, ffilm, ilm reviews, movie recommendations' },
     { property: 'og:title', content: 'Moovie Time - Discover Top Rated Movies' },
