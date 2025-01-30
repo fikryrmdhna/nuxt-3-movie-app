@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     },
   },
   build: {
+    analyze: true,
     transpile: ['vuetify'],
   },
   modules: [
@@ -39,5 +40,16 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
-  },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+          }
+        }
+      }
+    }
+  }
 })

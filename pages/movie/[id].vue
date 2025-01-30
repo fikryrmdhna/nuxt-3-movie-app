@@ -18,7 +18,7 @@
                 </v-row>
             </v-container-fluid>
         </section>
-        <section class="-mt-[30rem] sm:-mt-60 bg-[#1E232B] lg:bg-transparent">
+        <section class="-mt-[30rem] sm:-mt-56 bg-[#1E232B] lg:bg-transparent">
             <v-container>
                 <v-row v-if="detail?.movie" class="movie-detail relative z-10">
                     <v-col cols="8" md="2" lg="3">
@@ -121,6 +121,40 @@ const { data: detail, refresh } = await useAsyncData('detail', async () => {
         }, 
         reviews: slicedReviews
     };
+});
+
+useHead({
+  title: () => detail?.value?.movie.title + ' - Movie Details',
+  link: [{ rel: 'canonical', href: `http://localhost:3000/movie/${route.params.id}` }],
+  meta: [
+    { name: 'description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
+    { property: 'og:title', content: () => detail?.value?.movie.title },
+    { property: 'og:description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
+    { property: 'og:image', content: () => `http://image.tmdb.org/t/p/w500/${detail?.value?.movie.poster_path}` },
+    { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: () => `http://localhost:3000/movie/${route.params.id}` },
+    { name: 'twitter:title', content: () => detail?.value?.movie.title },
+    { name: 'twitter:description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
+    { name: 'twitter:image', content: () => `http://image.tmdb.org/t/p/w500/${detail?.value?.movie.poster_path}` },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: computed(() => JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Movie",
+        "name": detail?.value?.movie.title,
+        "description": detail?.value?.movie.overview || 'This film has no overview',
+        "image": `http://image.tmdb.org/t/p/w500/${detail?.value?.movie.poster_path}`,
+        "datePublished": detail?.value?.movie.formatted_release_date,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": detail?.value?.movie.vote_average,
+          "reviewCount": detail?.value?.movie.vote_count
+        }
+      }))
+    }
+  ]
 });
 
 watch(

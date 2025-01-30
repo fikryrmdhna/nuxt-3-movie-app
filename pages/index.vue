@@ -82,10 +82,12 @@
                         </div>
                     </v-col>
                     <v-col cols="12" md="9">
-                        <MovieCard v-if="!isLoadingMovies" :movies="movies" :className="'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-3'" />
-                        <div v-else class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-3">
-                            <v-skeleton-loader v-for="i in 20" :key="i" type="image"></v-skeleton-loader>
-                        </div>
+                        <ClientOnly>
+                            <MovieCard v-if="!isLoadingMovies" :movies="movies" :className="'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-3'" />
+                            <div v-else class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-3">
+                                <v-skeleton-loader v-for="i in 20" :key="i" type="image"></v-skeleton-loader>
+                            </div>
+                        </ClientOnly>
                         <div class="text-center">
                             <v-btn
                                 density="default" 
@@ -130,6 +132,22 @@ import 'vue3-carousel/dist/carousel.css'
 definePageMeta({
   layout: 'default'
 })
+
+useHead({
+  title: 'Moovie Time - Discover Top Rated Movies',
+  meta: [
+    { name: 'description', content: 'Explore top-rated movies, trending films, and latest releases. Get details, reviews, and recommendations for the best movies available.' },
+    { name: 'keywords', content: 'movies, top rated movies, latest movies, ffilm, ilm reviews, movie recommendations' },
+    { property: 'og:title', content: 'Moovie Time - Discover Top Rated Movies' },
+    { property: 'og:description', content: 'Explore top-rated movies, trending films, and latest releases. Get details, reviews, and recommendations for the best movies available..' },
+    { property: 'og:image', content: 'https://placehold.co/50x50' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://yourwebsite.com' },
+    { name: 'twitter:title', content: 'Moovie Time - Discover Top Rated Movies' },
+    { name: 'twitter:description', content: 'Explore top-rated movies, trending films, and latest releases. Get details, reviews, and recommendations for the best movies available..' },
+    { name: 'twitter:image', content: 'https://placehold.co/50x50' },
+  ]
+});
 
 const movieStore = useMovieStore();
 const { mdAndDown } = useDisplay();
