@@ -6,7 +6,7 @@
                     <p class="text-[#929292] text-xs">&#169 2021 MoovieTime. All rights reserved.</p>
                 </v-col>
                 <v-col cols="12" sm="4" class="flex justify-sm-center">
-                    <img src="../assets/images/moovietime-logo-grey@2x.png" alt="" class="img-fluid">
+                    <img src="../assets/images/moovietime-logo-grey@2x.png" alt="footer logo" class="img-fluid">
                 </v-col>
                 <v-col cols="12" sm="4" class="text-sm-right">
                     <p class="text-[#929292] text-xs">Made with Nuxt JS v3</p>

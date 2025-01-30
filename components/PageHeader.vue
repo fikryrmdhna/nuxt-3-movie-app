@@ -3,7 +3,7 @@
         <div class="flex md:justify-between align-center w-100">
             <div class="logo">
                 <NuxtLink to="/">
-                    <img src="../assets//images/moovietime-logo@2x.png" alt="logo" class="img-fluid w-24">
+                    <img src="../assets//images/moovietime-logo@2x.png" alt="logo header" class="img-fluid w-24">
                 </NuxtLink>
             </div>
             <Searchbar class="d-none ml-4 md:ml-0 d-sm-block" />

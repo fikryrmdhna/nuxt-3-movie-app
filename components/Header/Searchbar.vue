@@ -15,7 +15,7 @@
             @focus="showDropdown = true"
         >
             <template #prepend-inner>
-                <img src="../../assets/images/movie-icon@2x.png" class="img-fluid" />
+                <img src="../../assets/images/movie-icon@2x.png" alt="logo movie" class="img-fluid" />
             </template>
         </v-text-field>
         <v-card v-if="showDropdown && autocompletes.length" class="-bottom-40 left-0 !bg-black/90">

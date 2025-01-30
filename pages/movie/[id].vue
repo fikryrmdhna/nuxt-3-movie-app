@@ -6,12 +6,13 @@
                     <v-col cols="12">
                         <div v-if="detail" class="image relative">
                             <NuxtImg
-                                :src="detail.movie.backdrop_path ? `http://image.tmdb.org/t/p/w500/${detail.movie.backdrop_path}` : 'https://placehold.co/1600x600'"
+                                :src="detail.movie.backdrop_path ? `http://image.tmdb.org/t/p/w1280/${detail.movie.backdrop_path}` : 'https://placehold.co/1600x600'"
                                 :alt="detail.movie.title" 
                                 class="img-fluid relative"
                                 format="webp"
-                                loading="lazy"
-                                fit="cover" 
+                                loading="eager"
+                                fit="cover"
+                                priority
                             />
                         </div>
                     </v-col>
@@ -125,7 +126,16 @@ const { data: detail, refresh } = await useAsyncData('detail', async () => {
 
 useHead({
   title: () => detail?.value?.movie.title + ' - Movie Details',
-  link: [{ rel: 'canonical', href: `http://localhost:3000/movie/${route.params.id}` }],
+  link: [
+    { rel: 'canonical', href: `http://localhost:3000/movie/${route.params.id}` },
+    {
+      rel: 'preload',
+      as: 'image',
+      href: detail?.value?.movie.backdrop_path
+        ? `http://image.tmdb.org/t/p/w1280/${detail.value.movie.backdrop_path}`
+        : 'https://placehold.co/1600x600',
+    }
+],
   meta: [
     { name: 'description', content: () => detail?.value?.movie.overview || 'This film has no overview' },
     { property: 'og:title', content: () => detail?.value?.movie.title },
